@@ -38,13 +38,14 @@ public class PruebasBD {
         }catch (Exception e){
             System.err.println("FALLO EN BASE DATOS: " + e);
         }
-        
+        System.out.println("");
+        System.out.println("");
         try {
             ConexionBaseDatos.instancia().getStatement().execute(
-                ""   
+                "insert into prueba values ('27358276', 'F', 'Puto Rodrigo', 'Calle paguita');"   
                 );
         }catch (Exception e){
-            System.err.println("FALLO EN BASE DATOS: " + e);
+            System.err.println("DATO REPETIDO: " + e);
         }
         
         try {
