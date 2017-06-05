@@ -22,7 +22,7 @@ public class ConexionBaseDatos {
     
     private ConexionBaseDatos() throws SQLException {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://192.168.1.12:3306/BasePrueba","root","mysql");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pruebasbd","root","mysql");
             stmt = conn.createStatement();
         }
         catch(SQLException e) {

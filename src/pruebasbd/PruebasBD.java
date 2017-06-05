@@ -29,12 +29,32 @@ public class PruebasBD {
                        
         try {
             rs = ConexionBaseDatos.instancia().getStatement().executeQuery(
-                "select * from prueba where num=1;"   
+                "select * from prueba;"   
                 );
-            if(rs.next()){
-                System.out.println(rs.getString(1));
+            while (rs.next()){
+                System.out.println("D.N.I.: " + rs.getString(1) + rs.getString(2) + ".\nNombre: " + rs.getString(3) + ".\nDirección: " + rs.getString(4));
+                System.out.println("----------------------------------");
             }
-            
+        }catch (Exception e){
+            System.err.println("FALLO EN BASE DATOS: " + e);
+        }
+        
+        try {
+            ConexionBaseDatos.instancia().getStatement().execute(
+                ""   
+                );
+        }catch (Exception e){
+            System.err.println("FALLO EN BASE DATOS: " + e);
+        }
+        
+        try {
+            rs = ConexionBaseDatos.instancia().getStatement().executeQuery(
+                "select * from prueba;"   
+                );
+            while (rs.next()){
+                System.out.println("D.N.I.: " + rs.getString(1) + rs.getString(2) + ".\nNombre: " + rs.getString(3) + ".\nDirección: " + rs.getString(4));
+                System.out.println("----------------------------------");
+            }
         }catch (Exception e){
             System.err.println("FALLO EN BASE DATOS: " + e);
         }
