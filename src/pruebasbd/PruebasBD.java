@@ -8,6 +8,7 @@ package pruebasbd;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  *
@@ -24,12 +25,41 @@ public class PruebasBD {
     
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
+        Date fecha = new Date();
         ResultSet rs;
-                       
+        Scanner teclado = new Scanner(System.in);
+        
+        /*
+        System.out.print("DENEI: ");
+        int dni = teclado.nextInt();
+        
+        System.out.print("Letra: ");
+        String letra = teclado.next();
+        */
+        System.out.print("Nombre: ");
+        String nombre = teclado.next();
+        
+        
         try {
             rs = ConexionBaseDatos.instancia().getStatement().executeQuery(
-                "select * from prueba;"   
+                "select * from prueba where dni=" + nombre + ";"   
+                );
+            if (rs.next()){
+                System.out.println("D.N.I.: " + rs.getString(1) + rs.getString(2) + ".\nNombre: " + rs.getString(3) + ".\nDirección: " + rs.getString(4));
+                System.out.println("----------------------------------");
+            } else {
+                System.err.println("RESULTADO VACIO");
+            }
+        }catch (Exception e){
+            System.err.println("FALLO AL BUSCAR: " + e);
+        }
+        /*
+        System.out.println("Direccion: ");
+        String direccion = teclado.next();
+                
+        try {
+            rs = ConexionBaseDatos.instancia().getStatement().executeQuery(
+                "select * from prueba;"
                 );
             while (rs.next()){
                 System.out.println("D.N.I.: " + rs.getString(1) + rs.getString(2) + ".\nNombre: " + rs.getString(3) + ".\nDirección: " + rs.getString(4));
@@ -42,7 +72,8 @@ public class PruebasBD {
         System.out.println("");
         try {
             ConexionBaseDatos.instancia().getStatement().execute(
-                "insert into prueba values ('27358276', 'F', 'Puto Rodrigo', 'Calle paguita');"   
+                "insert into prueba values (" + Integer.toString(dni) + ", '" + letra + "', '" + nombre +
+                        "', '" + direccion + "');"   
                 );
         }catch (Exception e){
             System.err.println("DATO REPETIDO: " + e);
@@ -59,6 +90,7 @@ public class PruebasBD {
         }catch (Exception e){
             System.err.println("FALLO EN BASE DATOS: " + e);
         }
+        */
         
         
     /*
@@ -144,6 +176,9 @@ public class PruebasBD {
        
     }
 }
+
+//******************************************************************************
+//******************************************************************************
 /*
     static PruebasBD instancia = null;
     SimpleDateFormat sdf;
