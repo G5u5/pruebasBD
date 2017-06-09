@@ -42,7 +42,7 @@ public class PruebasBD {
         
         try {
             rs = ConexionBaseDatos.instancia().getStatement().executeQuery(
-                "select * from prueba where dni=" + nombre + ";"   
+                "select * from prueba where dni=71934393"   
                 );
             if (rs.next()){
                 System.out.println("D.N.I.: " + rs.getString(1) + rs.getString(2) + ".\nNombre: " + rs.getString(3) + ".\nDirección: " + rs.getString(4));
